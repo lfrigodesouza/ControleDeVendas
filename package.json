@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/lfrigodesouza/ControleDeVendas/issues"
   },
-  "homepage": "https://github.com/lfrigodesouza/ControleDeVendas#readme"
+  "homepage": "https://github.com/lfrigodesouza/ControleDeVendas#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.9"
+  },
+  "devDependencies": {
+    "eslint": "^4.6.0",
+    "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.12.0"
+  }
 }

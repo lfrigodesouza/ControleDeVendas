@@ -1,0 +1,9 @@
+{
+    "extends": "google",
+    "env": {
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6
+    }
+}
