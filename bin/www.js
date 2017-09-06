@@ -1,4 +1,5 @@
 'use strict';
+
 const app = require('../src/app');
 const http = require('http');
 
@@ -63,5 +64,5 @@ function onListening() {
     let bind = typeof addr === 'string'
         ? 'pipe ' + addr
         : 'port ' + addr.port;
-    //debug('Listening on ' + bind);
+    // debug('Listening on ' + bind);
 };
