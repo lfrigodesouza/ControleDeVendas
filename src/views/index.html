@@ -21,6 +21,34 @@
     <h3><a href="/cliente">Cadastro de Cliente</a></h3>
     <br>
     <h3><a href="/produto">Cadastro de Produto</a></h3>
+    <br>
+    <h3><a href="/pedido">Cadastro de Pedidos</a></h3>
+
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+    <table class="table">
+            <tr>
+                <td></td>
+                <td>Cliente</td>
+                <td>Valor Total</td>
+                <td>Data Pedido</td>
+                <td>Data Entrega</td>
+                <td>Método de Pagamento</td>
+            </tr>
+            <tr ng-repeat="x in ListaPedidosPendentes track by $index">
+                <td>{{$index +1}}</td>
+                <td>{{ x.cliente }}</td>
+                <td>{{ x.valortotal | currency:"&#82;&#36;"}}</td>
+                <td>{{ x.datapedido }}</td>
+                <td>{{ x.dataentrega }}</td>
+                <td>{{ x.metodopagamento }}</td>
+                <!-- <td><span class="fa fa-times" aria-hidden="true" ng-click="removerProduto($index)"></span></td> -->
+            </tr>
+        </table>
+    </div>
+    </div>
 </body>
 
 </html>

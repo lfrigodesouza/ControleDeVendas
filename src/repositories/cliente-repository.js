@@ -8,3 +8,9 @@ exports.post = async(data)=> {
     await cliente.save();
 };
 
+exports.BuscaClientePorTel = async(telprincipal)=>{
+    const res = await Cliente.findOne({
+        telprincipal: telprincipal,
+    });
+    return res;
+};

@@ -1,7 +1,7 @@
 'use strict';
 
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 
 const schema = new Schema({
     cliente: {
@@ -9,10 +9,6 @@ const schema = new Schema({
         ref: 'Cliente',
         require: [true, 'Todo pedido precisa de um cliente'],
         index: true,
-    },
-    numero: {
-        type: Number,
-        required: true,
     },
     metodopagamento: {
         type: String,
@@ -48,11 +44,7 @@ const schema = new Schema({
             required: true,
             default: 1,
         },
-        observacao: {
-            type: String,
-            maxlength: 500,
-        },
     }],
 });
 
-module.exports = moongose.model('Pedido', schema);
+module.exports = mongoose.model('Pedido', schema);

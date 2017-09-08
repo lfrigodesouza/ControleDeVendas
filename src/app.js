@@ -22,15 +22,18 @@ mongoose.connect('mongodb://sa:sa123@ds036967.mlab.com:36967/ctrlvendas', {
 // Modelos
 const cliente = require('./models/cliente-model');
 const produto = require('./models/produto-model');
+const pedido = require('./models/pedido-model');
 
 // Declaração das Rotas para os Controllers
 const indexRoute = require('./routes/index-route');
 const clienteRoute = require('./routes/cliente-route');
 const produtoRoute = require('./routes/produto-route');
+const pedidoRoute = require('./routes/pedido-route');
 
 // Uso das rotas dos Controllers
  app.use('/', indexRoute);
  app.use('/cliente', clienteRoute);
  app.use('/produto', produtoRoute);
+ app.use('/pedido', pedidoRoute);
 
 module.exports = app;
