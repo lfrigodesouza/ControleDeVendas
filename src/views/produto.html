@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html ng-app="app" ng-controller="Produto">
+
+<head>
+    <!-- <script src="../../node_modules/angular/angular.js"></script> -->
+    <script src="/scripts/angular.min.js"></script>
+    <script src="/scripts/main-script.js"></script>
+    <script src="/scripts/produto-script.js"></script>
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <title>{{pageTitle}}</title>
+</head>
+
+
+<body>
+    <div>
+        <h1>{{pageTitle}}</h1>
+    </div>
+    <div class="container-fluid">
+        <form>
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="txtCodigo" style="font-weight: bold;">Código</label>
+                    <input type="text" data-ng-model="data.codigo" id="txtCodigo" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="txtNome" style="font-weight: bold;">Nome</label>
+                    <input type="text" data-ng-model="data.nome" id="txtNome" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="txtValor" style="font-weight: bold;">Valor</label>
+                    <input type="text" data-ng-model="data.valor" id="txtValor" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="cbClassificacao" style="font-weight: bold;">Classificação</label>
+                    <select name="cbClassificacao" class="form-control" data-ng-model="data.classificacao">
+                        <option value="">Selecione</option> 
+                        <option value="Prato Feito">Prato Feito</option>
+                        <option value="Massa">Massa</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                        <label for="ckAtivo" style="font-weight: bold;">Ativo</label>
+                        <input type="checkbox" data-ng-model="data.ativo" ng-checked="true" id="ckAtivo" class="form-control" style="width: 25px; height: 25px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="txtObservacao">Obseração</label>
+                    <textarea id="txtObservacao" data-ng-model="data.observacao" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <span></span>
+                </div>
+                <div class="col-md-2">
+                    <br> <input type="submit" value="Salvar" ng-click="clickSalvar()" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="{{alert}}" style="text-align: center">{{msgRetorno}}</div>
+                </div>
+            </div>
+
+            <br>
+        </form>
+    </div>
+</body>
+
+</html>

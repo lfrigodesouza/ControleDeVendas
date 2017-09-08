@@ -2,6 +2,7 @@
 
 let errors = [];
 
+/** Função que guarda a lista de erros das validações*/
 function Validation() {
     errors = [];
 }
@@ -31,9 +32,47 @@ Validation.prototype.isFixedLen = (value, len, message) => {
 };
 
 Validation.prototype.isEmail = (value, message) => {
-    let reg = new RegExp(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
-    if (!reg.test(value)) {
-        errors.push({message: message});
+    if (!value == '') {
+        let reg = new RegExp(/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
+        if (!reg.test(value)) {
+            errors.push({message: message});
+        }
+    }
+};
+
+Validation.prototype.isTel = (value, message) => {
+    if (!value == '') {
+        let reg = new RegExp(/^[1-9]{2}(?:[2-8]|9[1-9])[0-9]{3}[0-9]{4}$/);
+        if (!reg.test(value)) {
+            errors.push({message: message});
+        }
+    }
+};
+
+Validation.prototype.isCEP = (value, message) => {
+    if (!value == '') {
+        let reg = new RegExp(/^[0-9]{8}$/);
+        if (!reg.test(value)) {
+            errors.push({message: message});
+        }
+    }
+};
+
+Validation.prototype.isMoney = (value, message) => {
+    if (!value == '') {
+        let reg = new RegExp(/^[0-9]{0,3}.[0-9]{2}$/);
+        if (!reg.test(value)) {
+            errors.push({message: message});
+        }
+    }
+};
+
+Validation.prototype.isNumber = (value, message) => {
+    if (!value == '') {
+        let reg = new RegExp(/^(0|[1-9]\d*)$/);
+        if (!reg.test(value)) {
+            errors.push({message: message});
+        }
     }
 };
 

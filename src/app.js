@@ -15,19 +15,22 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname + '/public'));
 
 // Conecta com o MongoDB
-mongoose.connect('mongodb://sa:sa@ds036967.mlab.com:36967/ndstr');
+mongoose.connect('mongodb://sa:sa123@ds036967.mlab.com:36967/ctrlvendas', {
+    useMongoClient: true,
+});
 
 // Modelos
+const cliente = require('./models/cliente-model');
+const produto = require('./models/produto-model');
 
 // Declaração das Rotas para os Controllers
 const indexRoute = require('./routes/index-route');
+const clienteRoute = require('./routes/cliente-route');
+const produtoRoute = require('./routes/produto-route');
 
 // Uso das rotas dos Controllers
  app.use('/', indexRoute);
-
-// Rotas para os HTMLs
-// app.get('/', (req, res, next) => {
-//     res.sendFile(path.join(__dirname+'/views/index.html'));
-// });
+ app.use('/cliente', clienteRoute);
+ app.use('/produto', produtoRoute);
 
 module.exports = app;

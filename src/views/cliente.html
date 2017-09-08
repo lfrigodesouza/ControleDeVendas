@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html ng-app="app" ng-controller="Cliente">
+
+<head>
+    <!-- <script src="../../node_modules/angular/angular.js"></script> -->
+    <script src="/scripts/angular.min.js"></script>
+    <script src="/scripts/main-script.js"></script>
+    <script src="/scripts/cliente-script.js"></script>
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <title>{{pageTitle}}</title>
+</head>
+
+
+<body>
+    <div>
+        <h1>{{pageTitle}}</h1>
+        <!-- <h2>Página inicial do cadastro de clientes</h2> -->
+    </div>
+    <div class="container-fluid">
+        <form>
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="txtNome" style="font-weight: bold;">Nome</label>
+                    <input type="text" ng-model="data.nome" id="txtNome" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6"><label for="txtEndereco" style="font-weight: bold;">Endereço</label>
+                    <input type="text" ng-model="data.endereco" id="txtEndereco" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label for="txtComplemento">Complemento</label>
+                    <input type="text" ng-model="data.complemento" id="txtComplemento" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="txtBairro">Bairro</label>
+                    <input type="text" ng-model="data.bairro" id="txtBairro" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label for="txtCEP">CEP</label>
+                    <input type="text" ng-model="data.CEP" id="txtCEP" class="form-control" >
+                </div>
+                <div class="col-md-2">
+                    <label for="txtCidade">Cidade</label>
+                    <input type="text" ng-model="data.cidade" id="txtCidade" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label for="txtEstado">Estado</label>
+                    <input type="text" ng-model="data.estado" id="txtEstado" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="txtTelPrincipal" style="font-weight: bold;" >Telefone Principal</label>
+                    <input type="text" ng-model="data.telprincipal" id="txtTelPrincipal" class="form-control">
+                </div>
+                <div class="col-md-4">
+                    <label for="txtTelSecundario">Telefone Secundário</label>
+                    <input type="text" ng-model="data.telsecundario" id="txtTelSecundario" class="form-control">
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="txtEmail">E-mail</label>
+                    <input type="text" ng-model="data.email" id="txtEmail" class="form-control">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="txtEmpresa">Empresa</label>
+                    <input type="text" ng-model="data.empresa" id="txtEmpresa" class="form-control">
+                </div>
+                <div class="col-md-2">
+                    <label for="ckFiado">Aceita Fiado</label>
+                    <input type="checkbox" id="ckFiado" checked=false data-ng-model="data.fiado" class="form-control" style="width: 25px; height: 25px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="txtObservacao">Obseração</label>
+                    <textarea id="txtObservacao" data-ng-model="data.observacao" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <span></span>
+                </div>
+                <div class="col-md-2">
+                    <br> <input type="submit" value="Salvar" ng-click="clickSalvar()" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="{{alert}}" style="text-align: center">{{msgRetorno}}</div>
+                </div>
+            </div>
+
+            <br>
+        </form>
+    </div>
+</body>
+
+</html>
