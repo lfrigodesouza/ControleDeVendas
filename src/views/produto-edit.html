@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html ng-app="app" ng-controller="Produto">
+
+<head>
+    <!-- <script src="../../node_modules/angular/angular.js"></script> -->
+    <script src="/scripts/angular.min.js"></script>
+    <script src="/scripts/main-script.js"></script>
+    <script src="/scripts/produto-edit-script.js"></script>
+    <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/font-awesome.min.css">
+
+    <title>{{pageTitle}}</title>
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <label class="navbar-brand">Controle de Vendas</label>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Inicial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes">Clientes</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/produtos">Produtos<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pedidos">Pedidos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <h1>{{pageTitle}}</h1>
+    </div>
+    <div class="container-fluid">
+        <form>
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="txtCodigo" style="font-weight: bold;">Código</label>
+                    <input type="text" data-ng-model="data.codigo" id="txtCodigo" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="txtNome" style="font-weight: bold;">Nome</label>
+                    <input type="text" data-ng-model="data.nome" id="txtNome" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <label for="txtValor" style="font-weight: bold;">Valor</label>
+                    <input type="text" data-ng-model="data.valor" id="txtValor" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="cbClassificacao" style="font-weight: bold;">Classificação</label>
+                    <select name="cbClassificacao" class="form-control" data-ng-model="data.classificacao">
+                        <option value="">Selecione</option> 
+                        <option value="Prato Feito">Prato Feito</option>
+                        <option value="Massa">Massa</option>
+                        <option value="Bebida">Bebida</option>
+                        <option value="Molho">Molho</option>
+                        <option value="Acompanhamento">Acompanhamento</option>
+                        <option value="Sobremesa">Sobremesa</option>
+                        <option value="Adicional">Adicional</option>
+                        <option value="Salada">Salada</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label for="ckAtivo" style="font-weight: bold;">Ativo</label>
+                    <input type="checkbox" data-ng-model="data.ativo" ng-checked="true" id="ckAtivo" class="form-control" style="width: 25px; height: 25px;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <label for="txtObservacao">Obseração</label>
+                    <textarea id="txtObservacao" data-ng-model="data.observacao" class="form-control"></textarea>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-8">
+                    <label for="flImagem">Imagem</label>
+                    <input type="file" id="flImagem" class="form-control" accept="image/*" data-ng-model="data.imagem">
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-md-3">
+                    <span></span>
+                </div>
+                <div class="col-md-2">
+                    <br> <input type="submit" value="Salvar" ng-click="clickSalvar()" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="{{alert}}" style="text-align: center">{{msgRetorno}}</div>
+                </div>
+            </div>
+
+            <br>
+        </form>
+    </div>
+</body>
+
+</html>

@@ -2,9 +2,10 @@
 
 const app = require('../src/app');
 const http = require('http');
+const config = require('../src/config');
 
 // Obtêm a porta do ambiente
-const port = normalizePort(process.env.PORT || '1234');
+const port = normalizePort(process.env.PORT || config.defaultPort);
 app.set('port', port);
 
 // Cria o servidor HTTP

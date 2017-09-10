@@ -45,6 +45,11 @@ const schema = new Schema({
             default: 1,
         },
     }],
+    cancelado: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
 });
 
 module.exports = mongoose.model('Pedido', schema);

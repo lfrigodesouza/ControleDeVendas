@@ -25,7 +25,8 @@ const schema = new Schema({
     classificacao: {
         type: String,
         required: true,
-        enum: ['Prato Feito', 'Massa'],
+        enum: ['Prato Feito', 'Massa', 'Molho', 'Acompanhamento',
+            'Sobremesa', 'Adicional', 'Salada', 'Bebida'],
     },
     ativo: {
         type: Boolean,

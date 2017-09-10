@@ -3,6 +3,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const config = require('./config');
 
 // Inicia a aplicação apontando para o ExpressJS
 // Depois adiciona o uso do bodyParser para melhorar 
@@ -15,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname + '/public'));
 
 // Conecta com o MongoDB
-mongoose.connect('mongodb://sa:sa123@ds036967.mlab.com:36967/ctrlvendas', {
+mongoose.connect(config.connectionString, {
     useMongoClient: true,
 });
 
@@ -32,8 +33,8 @@ const pedidoRoute = require('./routes/pedido-route');
 
 // Uso das rotas dos Controllers
  app.use('/', indexRoute);
- app.use('/cliente', clienteRoute);
- app.use('/produto', produtoRoute);
- app.use('/pedido', pedidoRoute);
+ app.use('/clientes', clienteRoute);
+ app.use('/produtos', produtoRoute);
+ app.use('/pedidos', pedidoRoute);
 
 module.exports = app;

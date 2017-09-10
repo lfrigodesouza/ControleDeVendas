@@ -9,8 +9,8 @@ router.get('/', (req, res, next) =>{
     res.sendFile(path.join(__dirname+'/../views/pedido.html'));
 });
 router.post('/', controller.post);
-router.get('/BuscaClientePorTel/:telprincipal', controller.BuscaClientePorTel);
-router.get('/BuscaProdutoPorCodigo/:codigoproduto'
-    , controller.BuscaProdutoPorCodigo);
 router.get('/buscaPedidosPendentes', controller.buscaPedidosPendentes);
+router.put('/atualizaPedido', controller.atualizaPedido);
+router.put('/cancelarPedido', controller.cancelarPedido);
+router.put('/entregarPedido', controller.entregarPedido);
 module.exports = router;

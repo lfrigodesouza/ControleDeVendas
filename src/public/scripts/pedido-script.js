@@ -14,14 +14,16 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
         debugger;
         $scope.preparaEnvio();
 
-        $http.post('/pedido/', JSON.stringify($scope.pedido), {
+        $http.post('/pedidos/', JSON.stringify($scope.pedido), {
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
             },
         }).then((response) => {
             $scope.data = {};
+            $scope.pedido = {};
+            $scope.ListaDeProdutos = {};
             $scope.alert = 'alert alert-success';
-            $scope.msgRetorno = 'Produto salvo com sucesso';
+            $scope.msgRetorno = 'Pedido salvo com sucesso';
         }, (response) => {
             debugger;
             $scope.alert = 'alert alert-danger';
@@ -50,7 +52,7 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
     };
 
     $scope.buscaClientePorTel = function() {
-        $http.get('/pedido/BuscaClientePorTel/' + $scope.data.buscaCliente)
+        $http.get('/clientes/BuscaClientePorTel/' + $scope.data.buscaCliente)
             .then((response) => {
                 debugger;
                 $scope.cliente = response.data;
@@ -58,11 +60,14 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
     };
 
     $scope.buscaProdutoPorCodigo = function() {
-        $http.get('/pedido/BuscaProdutoPorCodigo/' + $scope.data.buscaProduto)
+        $http.get('/produtos/BuscaProdutoPorCodigo/' + $scope.data.buscaProduto)
             .then((response) => {
                 debugger;
-                $scope.produto = response.data;
-                $scope.produto.quantidade = 1;
+                if (response.data != '') {
+                    $scope.produto = response.data;
+                    $scope.produto.quantidade = 1;
+                }
+
             });
     };
     $scope.adicionarProduto = function() {

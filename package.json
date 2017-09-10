@@ -19,10 +19,12 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
-    "mongoose": "^4.11.9"
+    "mongoose": "^4.11.9",
+    "sendgrid": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "^4.6.0",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "nodemon": "^1.12.0"
   }
 }

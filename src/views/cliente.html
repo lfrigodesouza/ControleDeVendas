@@ -7,102 +7,95 @@
     <script src="/scripts/main-script.js"></script>
     <script src="/scripts/cliente-script.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/font-awesome.min.css">
     <title>{{pageTitle}}</title>
 </head>
 
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <label class="navbar-brand">Controle de Vendas</label>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Inicial</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/clientes">Clientes<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pedidos">Pedidos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div>
         <h1>{{pageTitle}}</h1>
         <!-- <h2>Página inicial do cadastro de clientes</h2> -->
+        <br>
     </div>
     <div class="container-fluid">
-        <form>
-            <div class="row">
-                <div class="col-md-8">
-                    <label for="txtNome" style="font-weight: bold;">Nome</label>
-                    <input type="text" ng-model="data.nome" id="txtNome" class="form-control">
+        <div class="row">
+            <div class="col-md-1">
+                <a href="/clientes/cliente-edit/"><label>Novo <span class="fa fa-user-plus fa-lg" aria-hidden="true"></span></label></a>
+            </div>
+            <div class="col-md-9">
+                <span></span>
+            </div>
+            <div class="col-md-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtbuscaCliente" data-ng-model="buscaTelPrincipal" placeholder="Tel. Principal">
+                    <div class="input-group-btn">
+                        <button id="btnBuscaClientePorTel" class="form-control" ng-click="buscaClientePorTel()"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6"><label for="txtEndereco" style="font-weight: bold;">Endereço</label>
-                    <input type="text" ng-model="data.endereco" id="txtEndereco" class="form-control">
-                </div>
-                <div class="col-md-2">
-                    <label for="txtComplemento">Complemento</label>
-                    <input type="text" ng-model="data.complemento" id="txtComplemento" class="form-control">
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-sm table-hover">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th></th>
+                            <th>Nome</th>
+                            <th>Tel. Princ.</th>
+                            <th>Tel. Sec.</th>
+                            <th>Endereço</th>
+                            <th>Complemento</th>
+                            <th>Bairro</th>
+                            <th>CEP</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Empresa</th>
+                            <th>Email</th>
+                            <th>Fiado</th>
+                            <th>Observação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in listaClientes">
+                            <td><a href="/clientes/cliente-edit/{{x._id}}"><span class="fa fa-lg fa-pencil-square-o" aria-hidden="true"></span></a></td>
+                            <td>{{ x.nome }}</td>
+                            <td>{{ x.telprincipal}}</td>
+                            <td>{{ x.telsecundario }}</td>
+                            <td>{{ x.endereco }}</td>
+                            <td>{{x.complemento}}</td>
+                            <td>{{x.bairro}}</td>
+                            <td>{{x.cep}}</td>
+                            <td>{{x.cidade}}</td>
+                            <td>{{x.estado}}</td>
+                            <td>{{x.empresa}}</td>
+                            <td>{{x.email}}</td>
+                            <td>{{true == x.fiado ? 'Sim' : 'Não' }}</td>
+                            <td>{{x.observacao}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div class="row">
-                <div class="col-md-2">
-                    <label for="txtBairro">Bairro</label>
-                    <input type="text" ng-model="data.bairro" id="txtBairro" class="form-control">
-                </div>
-                <div class="col-md-2">
-                    <label for="txtCEP">CEP</label>
-                    <input type="text" ng-model="data.CEP" id="txtCEP" class="form-control" >
-                </div>
-                <div class="col-md-2">
-                    <label for="txtCidade">Cidade</label>
-                    <input type="text" ng-model="data.cidade" id="txtCidade" class="form-control">
-                </div>
-                <div class="col-md-2">
-                    <label for="txtEstado">Estado</label>
-                    <input type="text" ng-model="data.estado" id="txtEstado" class="form-control">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="txtTelPrincipal" style="font-weight: bold;" >Telefone Principal</label>
-                    <input type="text" ng-model="data.telprincipal" id="txtTelPrincipal" class="form-control">
-                </div>
-                <div class="col-md-4">
-                    <label for="txtTelSecundario">Telefone Secundário</label>
-                    <input type="text" ng-model="data.telsecundario" id="txtTelSecundario" class="form-control">
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <label for="txtEmail">E-mail</label>
-                    <input type="text" ng-model="data.email" id="txtEmail" class="form-control">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="txtEmpresa">Empresa</label>
-                    <input type="text" ng-model="data.empresa" id="txtEmpresa" class="form-control">
-                </div>
-                <div class="col-md-2">
-                    <label for="ckFiado">Aceita Fiado</label>
-                    <input type="checkbox" id="ckFiado" checked=false data-ng-model="data.fiado" class="form-control" style="width: 25px; height: 25px;">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <label for="txtObservacao">Obseração</label>
-                    <textarea id="txtObservacao" data-ng-model="data.observacao" class="form-control"></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <span></span>
-                </div>
-                <div class="col-md-2">
-                    <br> <input type="submit" value="Salvar" ng-click="clickSalvar()" class="form-control">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="{{alert}}" style="text-align: center">{{msgRetorno}}</div>
-                </div>
-            </div>
-
-            <br>
-        </form>
+        </div>
     </div>
 </body>
 

@@ -8,7 +8,7 @@ function Validation() {
 }
 
 Validation.prototype.isRequired = (value, message) => {
-    if (!value || value.length <= 0) {
+    if (!value || value == null || value.length <= 0 ) {
         errors.push({message: message});
     }
 };

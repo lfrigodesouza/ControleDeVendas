@@ -7,47 +7,81 @@
     <script src="/scripts/main-script.js"></script>
     <script src="/scripts/index-script.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/font-awesome.min.css">
     <title>{{pageTitle}}</title>
 </head>
 
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <label class="navbar-brand">Controle de Vendas</label>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Inicial<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/pedidos">Pedidos</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
     <div>
         <h1>{{pageTitle}}</h1>
         <h2>Página inicial</h2>
     </div>
     <br>
     <br>
-    <h3><a href="/cliente">Cadastro de Cliente</a></h3>
+    <h3><a href="/clientes">Cadastro de Cliente</a></h3>
     <br>
-    <h3><a href="/produto">Cadastro de Produto</a></h3>
+    <h3><a href="/produtos">Cadastro de Produto</a></h3>
     <br>
-    <h3><a href="/pedido">Cadastro de Pedidos</a></h3>
+    <h3><a href="/pedidos">Cadastro de Pedidos</a></h3>
 
     <br>
     <br>
-    <div class="row">
-        <div class="col-md-12">
-    <table class="table">
-            <tr>
-                <td></td>
-                <td>Cliente</td>
-                <td>Valor Total</td>
-                <td>Data Pedido</td>
-                <td>Data Entrega</td>
-                <td>Método de Pagamento</td>
-            </tr>
-            <tr ng-repeat="x in ListaPedidosPendentes track by $index">
-                <td>{{$index +1}}</td>
-                <td>{{ x.cliente }}</td>
-                <td>{{ x.valortotal | currency:"&#82;&#36;"}}</td>
-                <td>{{ x.datapedido }}</td>
-                <td>{{ x.dataentrega }}</td>
-                <td>{{ x.metodopagamento }}</td>
-                <!-- <td><span class="fa fa-times" aria-hidden="true" ng-click="removerProduto($index)"></span></td> -->
-            </tr>
-        </table>
-    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-sm table-hover">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th>#</th>
+                            <th>Cliente</th>
+                            <th>Valor Total</th>
+                            <th>Data Pedido</th>
+                            <th>Data Entrega</th>
+                            <th>Método Pgto</th>
+                            <th>Qtd. Itens</th>
+                            <th>Entregue</th>
+                            <th>Cancelar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in ListaPedidosPendentes track by $index">
+                            <td><b>{{$index +1}}</b></td>
+                            <td>{{ x.cliente.nome }}</td>
+                            <td>{{ x.valortotal | currency:"&#82;&#36;"}}</td>
+                            <td>{{ x.datapedido }}</td>
+                            <td>{{ x.dataentrega }}</td>
+                            <td>{{ x.metodopagamento }}</td>
+                            <td>{{x.listaprodutos.length}}</td>
+                            <td><span class="fa fa-motorcycle fa-lg" ng-click="entregueClick(x._id)"></span></td>
+                            <td><span class="fa fa-calendar-times-o fa-lg" ng-click="cancelarClick(x._id)"></span></td>
+                            <!-- <td><span class="fa fa-times" aria-hidden="true" ng-click="removerProduto($index)"></span></td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 

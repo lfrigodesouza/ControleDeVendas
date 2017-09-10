@@ -14,6 +14,25 @@
 
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <label class="navbar-brand">Controle de Vendas</label>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Inicial</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/clientes">Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/produtos">Produtos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/pedidos">Pedidos<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div>
         <h1>{{pageTitle}}</h1>
     </div>
@@ -78,13 +97,13 @@
     <div class="container-fluid" id="cadastroPedido">
 
         <div class="row">
-            <div class="col-md-1">
-                    <label for="txtNumero"># Pedido</label>
-                    <span class="form-control">123</span>
-            </div>
+            <!-- <div class="col-md-1">
+                <label for="txtNumero"># Pedido</label>
+                <span class="form-control">123</span>
+            </div> -->
             <div class="col-md-2">
                 <label for="cbMetodoPgto">Método de Pagamento</label>
-                    <select name="cbMetodoPgto" class="form-control" data-ng-model="data.MetodoPgto">
+                <select name="cbMetodoPgto" class="form-control" data-ng-model="data.MetodoPgto">
                             <option value="">Selecione</option> 
                             <option value="Dinheiro">Dinheiro</option>
                             <option value="Sodexo">Sodexo</option>
@@ -95,8 +114,8 @@
                         </select>
             </div>
             <div class="col-md-2">
-                    <label for="txtValorTotal">Valor Total</label>
-                    <span class="form-control">{{valorTotal | currency:"&#82;&#36;"}}</span>
+                <label for="txtValorTotal">Valor Total</label>
+                <span class="form-control">{{valorTotal | currency:"&#82;&#36;"}}</span>
             </div>
         </div>
         <div class="row">
@@ -105,8 +124,8 @@
                 <input type="datetime-local" class="form-control" id="DtPedido" data-ng-model="dtPedido">
             </div>
             <div class="col-md-3">
-                    <label for="DtPedido">Data planejada da entrega</label>
-                    <input type="datetime-local" class="form-control" id="DtEntrega" data-ng-model="dtEntrega">
+                <label for="DtPedido">Data planejada da entrega</label>
+                <input type="datetime-local" class="form-control" id="DtEntrega" data-ng-model="dtEntrega">
             </div>
         </div>
         <div class="row">
@@ -176,18 +195,18 @@
         </div>
     </div>
     <div class="row">
-            <div class="col-md-3">
-                <span></span>
-            </div>
-            <div class="col-md-2">
-                <br> <input type="submit" value="Salvar" ng-click="clickSalvar()" class="form-control">
-            </div>
+        <div class="col-md-3">
+            <span></span>
         </div>
-        <div class="row">
-            <div class="col-md-8">
-                <div class="{{alert}}" style="text-align: center">{{msgRetorno}}</div>
-            </div>
+        <div class="col-md-2">
+            <br> <input type="submit" value="Salvar" ng-click="clickSalvar()" class="form-control">
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="{{alert}}" style="text-align: center">{{msgRetorno}}</div>
+        </div>
+    </div>
     </div>
 </body>
 

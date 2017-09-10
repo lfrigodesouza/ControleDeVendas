@@ -2,12 +2,10 @@
 
 const mongoose = require('mongoose');
 const produto = mongoose.model('Pedido');
-const pedidorepository = require('../repositories/pedido-repository');
-const clienterepository = require('../repositories/cliente-repository');
-const produtorepository = require('../repositories/produto-repository');
+const repository = require('../repositories/pedido-repository');
 const ValidationContract = require('../validators/fluent-validator');
 
-exports.post = async(req, res, next) =>{
+const validationPedido = (req) =>{
     let validator = new ValidationContract();
     validator.isRequired(req.body.cliente, 'O cliente é obrigatório');
     validator.isRequired(req.body.metodopagamento
@@ -16,15 +14,19 @@ exports.post = async(req, res, next) =>{
     validator.isRequired(req.body.dataentrega
         , 'A data planejada de entrega é obrigatório');
     validator.isRequired(req.body.valortotal, 'O pedido precisa ter algum valor');
-    
-        
+    return validator;
+};
+
+exports.post = async(req, res, next) =>{
+    let validator = await validationPedido(req);
     if (!validator.isValid()) {
         res.status(400).send(validator.errors()).end();
         return;
     };
-    
+
+
     try {
-        await pedidorepository.post(req.body)
+        await repository.post(req.body)
         res.status(201).send({ message: 'Pedido cadastrado com sucesso' });
     } catch (error) {
         res.status(500).send({
@@ -34,25 +36,14 @@ exports.post = async(req, res, next) =>{
     }
 };
 
-exports.BuscaClientePorTel = async(req, res, next) =>{
+exports.atualizaPedido = async(req, res, next) =>{
+    let validator = await validadePedido(req);
     try {
-        var data = await clienterepository.BuscaClientePorTel(req.params.telprincipal);
-        res.status(200).send(data);
+        await repository.atualizaPedido(req.body.id, req.body.data)
+        res.status(200).send({ message: 'Pedido atualizado com sucesso' });
     } catch (error) {
         res.status(500).send({
-            message: "Falha ao processar requisição"
-            , error
-        });
-    }
-};
-
-exports.BuscaProdutoPorCodigo = async(req, res, next) =>{
-    try {
-        var data = await produtorepository.BuscaProdutoPorCodigo(req.params.codigoproduto);
-        res.status(200).send(data);
-    } catch (error) {
-        res.status(500).send({
-            message: "Falha ao processar requisição"
+            message: "Falha ao atualizar pedido"
             , error
         });
     }
@@ -60,7 +51,32 @@ exports.BuscaProdutoPorCodigo = async(req, res, next) =>{
 
 exports.buscaPedidosPendentes = async(req, res, next) =>{
     try {
-        var data = await pedidorepository.buscaPedidosPendentes();
+        var data = await repository.buscaPedidosPendentes();
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha ao processar requisição"
+            , error
+        });
+    }
+};
+
+exports.cancelarPedido = async(req, res, next) =>{
+    try {
+        var data = await repository.cancelarPedido(req.body.id);
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha ao processar requisição"
+            , error
+        });
+    }
+};
+
+
+exports.entregarPedido = async(req, res, next) =>{
+    try {
+        var data = await repository.entregarPedido(req.body.id);
         res.status(200).send(data);
     } catch (error) {
         res.status(500).send({
