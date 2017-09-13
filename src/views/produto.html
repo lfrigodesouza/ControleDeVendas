@@ -38,51 +38,64 @@
     </div>
     <br>
     <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-1">
-                    <a href="/produtos/produto-edit/"><label>Novo <span class="fa fa-plus-square fa-lg" aria-hidden="true"></span></label></a>
-                </div>
-                <div class="col-md-9">
-                    <span></span>
-                </div>
-                <div class="col-md-2">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="txtbuscaProduto" data-ng-model="buscaCodigoProduto" placeholder="Código Produto">
-                        <div class="input-group-btn">
-                            <button id="btnBuscaProdutoPorCod" class="form-control" ng-click="BuscaProdutoPorCod()"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>
-                        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <a href="/produtos/produto-edit/"><label>Novo <span class="fa fa-plus-square fa-lg" aria-hidden="true"></span></label></a>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" ng-click="Anterior()">Anterior</a>
+                        </li>
+                        <!-- <li class="page-item" ng-repeat="x in paginas"><a class="page-link" href="#" ng-click="buscaProdutos(x)">{{x}}</a></li> -->
+                        <label  class="form-control">{{paginaAtual}}/{{paginas.length}}</label>
+                        <li class="page-item">
+                            <a class="page-link" href="#" ng-click="Proximo()">Próxima</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtbuscaProduto" data-ng-model="buscaCodigoProduto" placeholder="Código Produto">
+                    <div class="input-group-btn">
+                        <button id="btnBuscaProdutoPorCod" class="form-control" ng-click="BuscaProdutoPorCod()"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-sm table-hover">
-                        <thead class="thead-inverse">
-                            <tr>
-                                <th></th>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>Valor</th>
-                                <th>Classificação</th>
-                                <th>Ativo</th>
-                                <th>Observação</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="x in listaProdutos">
-                                <td><a href="/produtos/produto-edit/{{x._id}}"><span class="fa fa-lg fa-pencil-square-o" aria-hidden="true"></span></a></td>
-                                <td>{{ x.codigo }}</td>
-                                <td>{{ x.nome}}</td>
-                                <td>{{ x.valor | currency:"&#82;&#36;"}}</td>
-                                <td>{{ x.classificacao }}</td>
-                                <td>{{true == x.ativo ? 'Sim' : 'Não' }}</td>
-                                <td>{{x.observacao}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-sm table-hover">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th></th>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Classificação</th>
+                            <th>Ativo</th>
+                            <th>Observação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in listaProdutos">
+                            <td><a href="/produtos/produto-edit/{{x._id}}"><span class="fa fa-lg fa-pencil-square-o" aria-hidden="true"></span></a></td>
+                            <td>{{ x.codigo }}</td>
+                            <td>{{ x.nome}}</td>
+                            <td>{{ x.valor | currency:"&#82;&#36;"}}</td>
+                            <td>{{ x.classificacao }}</td>
+                            <td>{{true == x.ativo ? 'Sim' : 'Não' }}</td>
+                            <td>{{x.observacao}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

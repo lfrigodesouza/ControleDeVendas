@@ -77,7 +77,7 @@ exports.BuscaClientePorTel = async(req, res, next) =>{
 
 exports.buscaClientes = async(req, res, next) =>{
     try {
-        var data = await repository.buscaClientes();
+        var data = await repository.buscaClientes(req.params.pPage);
         res.status(200).send(data);
     } catch (error) {
         res.status(500).send({
@@ -91,6 +91,18 @@ exports.buscaClienteById = async(req, res, next) =>{
     try {
         var data = await repository.buscaClienteById(req.params.id);
         res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha ao processar requisição"
+            , error
+        });
+    }
+};
+
+exports.QtdTotalClientes = async(req, res, next) =>{
+    try {
+        var data = await repository.QtdTotalClientes();
+        res.status(200).send(data.toString());
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"

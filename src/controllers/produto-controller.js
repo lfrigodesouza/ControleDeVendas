@@ -69,7 +69,7 @@ exports.BuscaProdutoPorCodigo = async(req, res, next) =>{
 
 exports.buscaProdutos = async(req, res, next) => {
     try {
-        var data = await repository.buscaProdutos();
+        var data = await repository.buscaProdutos(req.params.pPage);
         res.status(200).send(data);
     } catch (error) {
         res.status(500).send({
@@ -83,6 +83,18 @@ exports.buscaProdutoById = async(req, res, next) =>{
     try {
         var data = await repository.buscaProdutoById(req.params.id);
         res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha ao processar requisição"
+            , error
+        });
+    }
+};
+
+exports.QtdTotalProdutos = async (req, res, next) =>{
+    try {
+        var data = await repository.QtdTotalProdutos();
+        res.status(200).send(data.toString());
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"

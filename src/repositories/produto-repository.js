@@ -23,8 +23,8 @@ exports.BuscaProdutoAtivoPorCodigo = async(codigoproduto)=>{
     return res;
 };
 
-exports.buscaProdutos = async() =>{
-    const res = await Produto.find();
+exports.buscaProdutos = async(pPage) =>{
+    const res = await Produto.find().sort({'codigo': 1}).skip((pPage - 1)*10).limit(10);
     return res;
 }
 
@@ -35,5 +35,10 @@ exports.buscaProdutoById = async(id)=>{
 
 exports.put = async(id, data)=> {
     const res = await Produto.findByIdAndUpdate(id, data);
+    return res;
+};
+
+exports.QtdTotalProdutos = async() => {
+    const res = await Produto.count();
     return res;
 };

@@ -42,9 +42,22 @@
             <div class="col-md-1">
                 <a href="/clientes/cliente-edit/"><label>Novo <span class="fa fa-user-plus fa-lg" aria-hidden="true"></span></label></a>
             </div>
-            <div class="col-md-9">
-                <span></span>
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" ng-click="Anterior()">Anterior</a>
+                        </li>
+                        <!-- <li class="page-item" ng-repeat="x in paginas"><a class="page-link" href="#" ng-click="buscaProdutos(x)">{{x}}</a></li> -->
+                        <label class="form-control">{{paginaAtual}}/{{paginas.length}}</label>
+                        <li class="page-item">
+                            <a class="page-link" href="#" ng-click="Proximo()">Próxima</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+            <div class="col-md-3"></div>
             <div class="col-md-2">
                 <div class="input-group">
                     <input type="text" class="form-control" id="txtbuscaCliente" data-ng-model="buscaTelPrincipal" placeholder="Tel. Principal">

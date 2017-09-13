@@ -15,8 +15,8 @@ exports.BuscaClientePorTel = async(telprincipal)=>{
     return res;
 };
 
-exports.buscaClientes = async()=>{
-    const res = await Cliente.find();
+exports.buscaClientes = async(pPage)=>{
+    const res = await Cliente.find().sort({'nome': 1}).skip((pPage - 1)*10).limit(10);;
     return res;
 };
 
@@ -28,4 +28,9 @@ exports.buscaClienteById = async(id)=>{
 exports.put = async(id, data)=> {
     const res = await Cliente.findByIdAndUpdate(id, data);
     return res;
+};
+
+exports.QtdTotalClientes = async()=>{
+    const res = await Cliente.count();
+    return res
 };

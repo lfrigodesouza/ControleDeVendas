@@ -21,7 +21,7 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
         }).then((response) => {
             $scope.data = {};
             $scope.pedido = {};
-            $scope.ListaDeProdutos = {};
+            $scope.ListaDeProdutos = [];
             $scope.alert = 'alert alert-success';
             $scope.msgRetorno = 'Pedido salvo com sucesso';
         }, (response) => {

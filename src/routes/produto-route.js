@@ -18,6 +18,8 @@ router.post('/', controller.post);
 router.get('/BuscaProdutoPorCodigo/:codigoproduto'
 , controller.BuscaProdutoPorCodigo);
 router.get('/buscaProdutos', controller.buscaProdutos);
+router.get('/buscaProdutos/:pPage', controller.buscaProdutos);
 router.get('/buscaProdutoById/:id', controller.buscaProdutoById);
+router.get('/QtdTotalProdutos', controller.QtdTotalProdutos);
 router.put('/', controller.put);
 module.exports = router;

@@ -16,7 +16,8 @@ router.get('/', (req, res, next) =>{
 });
 router.post('/', controller.post);
 router.get('/BuscaClientePorTel/:telprincipal', controller.BuscaClientePorTel);
-router.get('/buscaClientes', controller.buscaClientes);
+router.get('/buscaClientes/:pPage', controller.buscaClientes);
 router.get('/buscaClienteById/:id', controller.buscaClienteById);
+router.get('/QtdTotalClientes', controller.QtdTotalClientes);
 router.put('/', controller.put);
 module.exports = router;
