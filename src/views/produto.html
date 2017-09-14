@@ -33,11 +33,11 @@
             </ul>
         </div>
     </nav>
-    <div>
-        <h1>{{pageTitle}}</h1>
-    </div>
-    <br>
     <div class="container-fluid">
+        <div>
+            <h1>{{pageTitle}}</h1>
+        </div>
+        <br>
         <div class="row">
             <div class="col-md-1">
                 <a href="/produtos/produto-edit/"><label>Novo <span class="fa fa-plus-square fa-lg" aria-hidden="true"></span></label></a>
@@ -50,7 +50,7 @@
                             <a class="page-link" href="#" ng-click="Anterior()">Anterior</a>
                         </li>
                         <!-- <li class="page-item" ng-repeat="x in paginas"><a class="page-link" href="#" ng-click="buscaProdutos(x)">{{x}}</a></li> -->
-                        <label  class="form-control">{{paginaAtual}}/{{paginas.length}}</label>
+                        <label class="form-control">{{paginaAtual}}/{{paginas.length}}</label>
                         <li class="page-item">
                             <a class="page-link" href="#" ng-click="Proximo()">Próxima</a>
                         </li>

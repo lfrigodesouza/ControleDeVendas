@@ -2,13 +2,11 @@
 <html ng-app="app" ng-controller="Pedido">
 
 <head>
-    <!-- <script src="../../node_modules/angular/angular.js"></script> -->
     <script src="/scripts/angular.min.js"></script>
     <script src="/scripts/main-script.js"></script>
     <script src="/scripts/pedido-script.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/font-awesome.min.css">
-
     <title>{{pageTitle}}</title>
 </head>
 
@@ -33,181 +31,72 @@
             </ul>
         </div>
     </nav>
-    <div>
-        <h1>{{pageTitle}}</h1>
-    </div>
-    <div class="container-fluid" id="buscaDeCliente">
-        <br>
-        <form>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="txtBuscaCliente" data-ng-model="data.buscaCliente">
-                        <div class="input-group-btn">
-                            <button id="btnBuscarCliente" class="form-control" ng-click="buscaClientePorTel()"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <span ng-hide="cliente != ''">Cliente não encontrado. <a href="/cliente/" target="_blank">Deseja cadastrar</a>?</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <b>Nome:</b> {{cliente.nome}}
-                </div>
-                <div class="col-md-2">
-                    <b>Tel. Princ.:</b> {{cliente.telprincipal}}
-                </div>
-                <div class="col-md-2">
-                    <b>Tel. Sec.:</b> {{cliente.telsecundario}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <b>Endereço:</b> {{cliente.endereco}}
-                </div>
-                <div class="col-md-2">
-                    <b>Comp.:</b> {{cliente.complemento}}
-                </div>
-                <div class="col-md-3">
-                    <b>Bairro:</b> {{cliente.bairro}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <b>Empresa:</b> {{cliente.empresa}}
-                </div>
-                <div class="col-md-2">
-                    <b>Aceitar Fiado?</b> {{true == cliente.fiado ? 'Sim' : 'Não' }}
-                </div>
-                <div class="col-md-3">
-                    <b>Email:</b> {{cliente.email}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <b>Observação:</b> {{cliente.observacao}}
-                    <hr>
-                </div>
-            </div>
-        </form>
 
-    </div>
-    <div class="container-fluid" id="cadastroPedido">
-
-        <div class="row">
-            <!-- <div class="col-md-1">
-                <label for="txtNumero"># Pedido</label>
-                <span class="form-control">123</span>
-            </div> -->
-            <div class="col-md-2">
-                <label for="cbMetodoPgto">Método de Pagamento</label>
-                <select name="cbMetodoPgto" class="form-control" data-ng-model="data.MetodoPgto">
-                            <option value="">Selecione</option> 
-                            <option value="Dinheiro">Dinheiro</option>
-                            <option value="Sodexo">Sodexo</option>
-                            <option value="VR">VR</option>
-                            <option value="Débito">Débito</option>
-                            <option value="Crédito">Crédito</option>
-                            <option value="Fiado" ng-if="cliente.fiado == true">Fiado<option>
-                        </select>
-            </div>
-            <div class="col-md-2">
-                <label for="txtValorTotal">Valor Total</label>
-                <span class="form-control">{{valorTotal | currency:"&#82;&#36;"}}</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3">
-                <label for="DtPedido">Data do pedido</label>
-                <input type="datetime-local" class="form-control" id="DtPedido" data-ng-model="dtPedido">
-            </div>
-            <div class="col-md-3">
-                <label for="DtPedido">Data planejada da entrega</label>
-                <input type="datetime-local" class="form-control" id="DtEntrega" data-ng-model="dtEntrega">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <label for="txtObservacao">Obseração</label>
-                <textarea id="txtObservacao" data-ng-model="data.observacao" class="form-control"></textarea>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid" id="buscaDeProduto">
-        <br>
-        <form>
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="input-group">
-                        <input type="text" class="form-control" ng-disabled="cliente == null || cliente == ''" id="txtBuscaProduto" data-ng-model="data.buscaProduto">
-                        <div class="input-group-btn">
-                            <button id="btnBuscarProduto" class="form-control" ng-click="buscaProdutoPorCodigo()" ng-disabled="cliente == null || cliente == ''"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5"><b>Nome:</b> {{produto.nome}}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2"><b>Valor:</b> {{produto.valor | currency:"&#82;&#36;" }}</div>
-                <div class="col-md-3"><b>Classificação:</b> {{produto.classificacao}}</div>
-            </div>
-            <div class="row">
-                <div class="col-md-8"><b>Observação:</b> {{produto.observacao}}</div>
-            </div>
+    <div class="container-fluid">
+        <div>
+            <h1>{{pageTitle}}</h1>
             <br>
-            <div="row">
-                <div class="col-md-2">
-                    <div class="input-group">
-                        <div class="input-group-label">
-                            <span style="">Qtd.:</span>
-                        </div>
-                        <input type="number" class="form-control" id="txtQtd" data-ng-model="produto.quantidade" ng-disabled="produto == null || produto == ''">
-                        <div class="input-group-btn">
-                            <button id="btnAdicionar" class="form-control" ng-disabled="produto == null || produto == ''" ng-click="adicionarProduto()"><span class="fa fa-cart-plus fa-lg" aria-hidden="true"></span></button>
-                        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1">
+                <a href="/pedidos/pedido-edit/"><label>Novo <span class="fa fa-files-o fa-lg" aria-hidden="true"></span></label></a>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item">
+                            <a class="page-link" href="#" ng-click="Anterior()">Anterior</a>
+                        </li>
+                        <label class="form-control">{{paginaAtual}}/{{paginas.length}}</label>
+                        <li class="page-item">
+                            <a class="page-link" href="#" ng-click="Proximo()">Próxima</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-3"></div>
+            <!-- <div class="col-md-2">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="txtbuscaCliente" data-ng-model="buscaTelPrincipal" placeholder="Tel. Principal">
+                    <div class="input-group-btn">
+                        <button id="btnBuscaClientePorTel" class="form-control" ng-click="buscaClientePorTel()"><span class="fa fa-search fa-lg" aria-hidden="true"></span></button>
                     </div>
                 </div>
-    </div>
-    </form>
-    <div class="row">
-        <div class="col-md-8">
-            <table class="table">
-                <tr>
-                    <td></td>
-                    <td>Código</td>
-                    <td>Nome</td>
-                    <td>Valor</td>
-                    <td>Quantidade</td>
-                    <td>Remover</td>
-                </tr>
-                <tr ng-repeat="x in ListaDeProdutos track by $index">
-                    <td>{{$index +1}}</td>
-                    <td>{{ x.produto.codigo }}</td>
-                    <td>{{ x.produto.nome }}</td>
-                    <td>{{ x.produto.valor | currency:"&#82;&#36;"}}</td>
-                    <td>{{ x.produto.quantidade }}</td>
-                    <td><span class="fa fa-times" aria-hidden="true" ng-click="removerProduto($index)"></span></td>
-                </tr>
-            </table>
+            </div> -->
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-3">
-            <span></span>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-sm table-hover">
+                    <thead class="thead-inverse">
+                        <tr>
+                            <th></th>
+                            <th>Cliente</th>
+                            <th>Método Pgto.</th>
+                            <th>Data Pedido</th>
+                            <th>Data Entrega</th>
+                            <th>Valor Total</th>
+                            <th>Total Itens</th>
+                            <th>Entregue?</th>
+                            <th>Cancelado?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in listaPedidos">
+                            <td><a href="/pedidos/pedido-edit/{{x._id}}"><span class="fa fa-lg fa-pencil-square-o" aria-hidden="true"></span></a></td>
+                            <td>{{ x.cliente.nome }}</td>
+                            <td>{{ x.metodopagamento}}</td>
+                            <td>{{ x.datapedido | date:'dd/MM/yyyy HH:mm'}}</td>
+                            <td>{{ x.dataentrega | date:'dd/MM/yyyy HH:mm'}}</td>
+                            <td>{{x.valortotal | currency:'&#82;&#36;'}}</td>
+                            <td>{{x.listaprodutos.length}}</td>
+                            <td>{{x.entregue == true ? 'Sim' : 'Não'}}</td>
+                            <td>{{x.cancelado == true ? 'Sim' : 'Não'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="col-md-2">
-            <br> <input type="submit" value="Salvar" ng-click="clickSalvar()" class="form-control">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="{{alert}}" style="text-align: center">{{msgRetorno}}</div>
-        </div>
-    </div>
     </div>
 </body>
-
 </html>

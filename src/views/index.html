@@ -11,6 +11,7 @@
     <script src="/scripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/font-awesome.min.css">
+    <link rel="stylesheet" href="/styles/main.css">
     <title>{{pageTitle}}</title>
 </head>
 
@@ -36,45 +37,40 @@
         </div>
     </nav>
 
-
-    <div>
-        <h1>{{pageTitle}}</h1>
-        <h2>Página inicial</h2>
-    </div>
-    <br>
-    <br>
-    <h3><a href="/clientes">Cadastro de Cliente</a></h3>
-    <br>
-    <h3><a href="/produtos">Cadastro de Produto</a></h3>
-    <br>
-    <h3><a href="/pedidos">Cadastro de Pedidos</a></h3>
-
-    <br>
-    <br>
     <div class="container-fluid">
+        <div>
+            <h1>{{pageTitle}}</h1>
+        </div>
+        <br>
+        <br>
         <div class="row">
             <div class="col-md-12">
+                <h2>Hora Atual: {{ clock | date:'dd/MM/yyyy HH:mm'}}</h2>
+                <label><h2>Lista de Pedidos Pendentes</h2></label>
                 <table class="table table-sm table-hover">
                     <thead class="thead-inverse">
                         <tr>
                             <th>#</th>
                             <th>Cliente</th>
+                            <th>Tel. Principal</th>
                             <th>Valor Total</th>
                             <th>Data Pedido</th>
                             <th>Data Entrega</th>
                             <th>Método Pgto</th>
                             <th>Qtd. Itens</th>
-                            <th>Entregue</th>
+                            <th>Entregar</th>
                             <th>Cancelar</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="x in ListaPedidosPendentes track by $index">
+                        <tr ng-repeat="x in ListaPedidosPendentes track by $index ">
                             <td><b>{{$index +1}}</b></td>
                             <td>{{ x.cliente.nome }}</td>
+                            <td>{{x.cliente.telprincipal}}</td>
                             <td>{{ x.valortotal | currency:"&#82;&#36;"}}</td>
-                            <td>{{ x.datapedido }}</td>
-                            <td>{{ x.dataentrega }}</td>
+                            <td>{{ x.datapedido | date:'dd/MM/yyyy HH:mm' }}</td>
+                            <!-- -ng-class="{'color-red': 2 > 1}" -->
+                            <td ng-class="{'color-red': clock > getdatetime(x.dataentrega),'color-green': clock < getdatetime(x.dataentrega) }">{{x.dataentrega | date:'dd/MM/yyyy HH:mm'}}</td>
                             <td>{{ x.metodopagamento }}</td>
                             <td>{{x.listaprodutos.length}}</td>
                             <td><span class="fa fa-motorcycle fa-lg" ng-click="entregueClick(x._id)"></span></td>
@@ -90,45 +86,45 @@
     <!-- Modal Entregue -->
     <div class="modal fade" id="ModalEntregue" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Entregar pedido?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Entregar pedido?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
+                </div>
+                <div class="modal-body">
+                    Deseja mesmo marcar o pedido como entregue?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" ng-click="clickOKEntregar()">Sim</button>
+                </div>
             </div>
-            <div class="modal-body">
-              Deseja mesmo marcar o pedido como entregue?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-              <button type="button" class="btn btn-primary" ng-click="clickOKEntregar()">Sim</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <!-- Modal Cancelado -->
+    <!-- Modal Cancelado -->
     <div class="modal fade" id="ModalCancelar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Cancelar Pedido?</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cancelar Pedido?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
+                </div>
+                <div class="modal-body">
+                    Deseja mesmo marcar o pedido como cancelado?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                    <button type="button" class="btn btn-primary" ng-click="clickOKancelar()">Sim</button>
+                </div>
             </div>
-            <div class="modal-body">
-              Deseja mesmo marcar o pedido como cancelado?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-              <button type="button" class="btn btn-primary" ng-click="clickOKancelar()">Sim</button>
-            </div>
-          </div>
         </div>C
-      </div>
+    </div>
 
-    </body>
+</body>
 
 </html>

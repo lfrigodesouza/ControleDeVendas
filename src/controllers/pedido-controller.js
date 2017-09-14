@@ -31,7 +31,7 @@ exports.post = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao salvar pedido"
-            , error
+            , error : error
         });
     }
 };
@@ -44,7 +44,7 @@ exports.atualizaPedido = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao atualizar pedido"
-            , error
+            , error : error
         });
     }
 };
@@ -56,7 +56,7 @@ exports.buscaPedidosPendentes = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };
@@ -68,7 +68,7 @@ exports.cancelarPedido = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };
@@ -81,7 +81,55 @@ exports.entregarPedido = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };
+
+exports.buscaPedidosPorCliente = async(req, res, next) =>{
+    try{
+        var data = await repository.buscaPedidosPorCliente(req.params.id);
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha ao processar requisição",
+            error : error,
+        });
+    }
+}
+
+exports.buscaPedidos = async (req, res, next) =>{
+    try {
+        var data = await repository.buscaPedidos(req.params.pPage);
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha ao processar requisição",
+            error : error,
+        });
+    }
+};
+
+exports.qtdTotalPedidos = async (req, res, next) =>{
+    try {
+        var data = await repository.qtdTotalPedidos();
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha ao processar requisição",
+            error : error,
+        });
+    }
+};
+
+exports.buscaPedidoById = async (req, res, next) =>{
+    try {
+        var data = await repository.buscaPedidoById(req.params.id);
+        res.status(200).send(data);
+    } catch (error) {
+        res.status(500).send({
+            message: "Falha ao processar requisição",
+            error : error,
+        });
+    }
+}

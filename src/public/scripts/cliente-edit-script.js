@@ -8,17 +8,29 @@ angular.module('app').controller('Cliente', function($scope, $http) {
     $scope.idCliente = window.location.pathname
         .substr(window.location.pathname.lastIndexOf('/') + 1);
 
-    $scope.buscaClienteById = function(id) {
+    $scope.buscaClienteById = function(id, callback) {
         $http.get('/clientes/buscaClienteById/' + id)
             .then((response) => {
                 debugger;
+                $scope.isUpdate = true;
                 $scope.data = response.data;
+                if (callback != null) {
+                    callback();
+                }
             });
+    };
+    $scope.buscaPedidosPorCliente = function() {
+        $http.get('/pedidos/buscaPedidosPorCliente/'+ $scope.idCliente)
+        .then((response) => {
+            debugger;
+            $scope.listaPedidos = response.data;
+        });
     };
 
     if ($scope.idCliente != '' && $scope.idCliente != 'cliente-edit') {
-        $scope.isUpdate = true;
-        $scope.buscaClienteById($scope.idCliente);
+        debugger;
+        $scope.buscaClienteById($scope.idCliente
+            , $scope.buscaPedidosPorCliente);
     }
 
     $scope.clickSalvar = function() {

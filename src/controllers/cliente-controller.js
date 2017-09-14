@@ -39,7 +39,7 @@ exports.post = async(req, res, next) => {
     } catch (error) {
         res.status(500).send({
             message: "Falha ao salvar cliente"
-            , error
+            , error : error
         });
     }
 };
@@ -58,7 +58,7 @@ exports.put = async(req, res, next) => {
         } catch (error) {
             res.status(500).send({
                 message: "Falha ao atualizar cliente"
-                , error
+                , error : error
             });
         }
 };
@@ -70,7 +70,7 @@ exports.BuscaClientePorTel = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };
@@ -82,7 +82,7 @@ exports.buscaClientes = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };
@@ -94,7 +94,7 @@ exports.buscaClienteById = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };
@@ -106,7 +106,7 @@ exports.QtdTotalClientes = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };

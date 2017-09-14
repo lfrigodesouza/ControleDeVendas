@@ -30,7 +30,7 @@ exports.post = async(req, res, next) => {
     } catch (error) {
         res.status(500).send({
             message: "Falha ao salvar produto"
-            , error
+            , error : error
         });
     }
 };
@@ -50,7 +50,7 @@ exports.put = async(req, res, next) => {
         } catch (error) {
             res.status(500).send({
                 message: "Falha ao atualizar produto"
-                , error
+                , error : error
             });
         }
 };
@@ -74,7 +74,7 @@ exports.buscaProdutos = async(req, res, next) => {
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 }
@@ -86,7 +86,7 @@ exports.buscaProdutoById = async(req, res, next) =>{
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };
@@ -94,11 +94,11 @@ exports.buscaProdutoById = async(req, res, next) =>{
 exports.QtdTotalProdutos = async (req, res, next) =>{
     try {
         var data = await repository.QtdTotalProdutos();
-        res.status(200).send(data.toString());
+        res.status(200).send(data);
     } catch (error) {
         res.status(500).send({
             message: "Falha ao processar requisição"
-            , error
+            , error : error
         });
     }
 };

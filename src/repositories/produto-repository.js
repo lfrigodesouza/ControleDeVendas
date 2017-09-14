@@ -40,5 +40,5 @@ exports.put = async(id, data)=> {
 
 exports.QtdTotalProdutos = async() => {
     const res = await Produto.count();
-    return res;
+    return res.toString();
 };

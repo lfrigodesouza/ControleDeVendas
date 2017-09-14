@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app').controller('Index', function($scope, $http) {
+angular.module('app').controller('Index', function($scope, $http, $interval) {
     $scope.pageTitle = 'Controle de Vendas - Cozinha da Dinda';
 
     $scope.ListaPedidosPendentes = [];
@@ -12,6 +12,17 @@ angular.module('app').controller('Index', function($scope, $http) {
             });
     };
     $scope.buscaPedidosPendentes();
+
+    $scope.getdatetime = function(date) {
+        return Date.parse(date);
+    };
+
+    let tick = function() {
+        debugger;
+        $scope.clock = Date.now();
+      };
+      tick();
+      $interval(tick, 1000);
 
     $scope.entregueClick = function(id) {
         debugger;
