@@ -29,6 +29,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/pedidos">Pedidos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contas">Contas</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -84,7 +87,7 @@
                             <th>Estado</th>
                             <th>Empresa</th>
                             <th>Email</th>
-                            <th>Fiado</th>
+                            <th>Conta</th>
                             <th>Observação</th>
                         </tr>
                     </thead>
@@ -102,7 +105,7 @@
                             <td>{{x.estado}}</td>
                             <td>{{x.empresa}}</td>
                             <td>{{x.email}}</td>
-                            <td>{{true == x.fiado ? 'Sim' : 'Não' }}</td>
+                            <td>{{true == x.conta ? 'Sim' : 'Não' }}</td>
                             <td>{{x.observacao}}</td>
                         </tr>
                     </tbody>

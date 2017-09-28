@@ -36,7 +36,6 @@ exports.post = async(req, res, next) => {
 };
 
 exports.put = async(req, res, next) => {
-    console.log(req.body);
     let validator = await validationProduto({body: req.body.produto});
     
         if (!validator.isValid()) {

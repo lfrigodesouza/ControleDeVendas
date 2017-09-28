@@ -5,8 +5,16 @@ const Pedido = mongoose.model('Pedido');
 const ObjectID = require('mongodb').ObjectID;
 
 exports.post = async(data)=> {
-    var pedido = new Pedido(data);
-    await pedido.save();
+    let pedido = new Pedido(data);
+    return await pedido.save();
+};
+
+exports.salvaCodePedido = async(pId, pCode)=>{
+    await Pedido.findByIdAndUpdate(pId, {
+        $set: {
+            codigo: pCode,
+        },
+    });
 };
 
 exports.buscaPedidosPendentes = async()=>{
@@ -26,11 +34,21 @@ exports.cancelarPedido = async(id)=> {
 };
 
 exports.entregarPedido = async(id)=> {
-    await Pedido.findByIdAndUpdate(id, {
+    const res = await Pedido.findByIdAndUpdate(id, {
         $set: {
             entregue: true,
         },
     });
+    return res;
+};
+
+exports.pagarPedido = async(id)=> {
+    const res = await Pedido.findByIdAndUpdate(id, {
+        $set: {
+            pago: true,
+        },
+    });
+    return res;
 };
 
 exports.buscaPedidoById = async(id)=>{
@@ -59,3 +77,8 @@ exports.qtdTotalPedidos = async() =>{
     const res = await Pedido.count();
     return res.toString();
 };
+
+exports.put = async(id, data) =>{
+    const res = await Pedido.findByIdAndUpdate(id, data)
+    return res;
+}

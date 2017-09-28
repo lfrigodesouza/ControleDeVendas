@@ -30,11 +30,13 @@ const indexRoute = require('./routes/index-route');
 const clienteRoute = require('./routes/cliente-route');
 const produtoRoute = require('./routes/produto-route');
 const pedidoRoute = require('./routes/pedido-route');
+const contaRoute = require('./routes/conta-route');
 
 // Uso das rotas dos Controllers
  app.use('/', indexRoute);
  app.use('/clientes', clienteRoute);
  app.use('/produtos', produtoRoute);
  app.use('/pedidos', pedidoRoute);
+ app.use('/contas', contaRoute);
 
 module.exports = app;

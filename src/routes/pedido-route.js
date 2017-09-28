@@ -23,4 +23,5 @@ router.get('/buscaPedidosPorCliente/:id', controller.buscaPedidosPorCliente);
 router.get('/buscaPedidos/:pPage', controller.buscaPedidos);
 router.get('/qtdTotalPedidos', controller.qtdTotalPedidos);
 router.get('/buscaPedidoById/:id', controller.buscaPedidoById);
+router.put('/', controller.put);
 module.exports = router;

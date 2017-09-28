@@ -28,6 +28,9 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="/pedidos">Pedidos<span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contas">Contas</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -71,6 +74,7 @@
                     <thead class="thead-inverse">
                         <tr>
                             <th></th>
+                            <th>#</th>
                             <th>Cliente</th>
                             <th>Método Pgto.</th>
                             <th>Data Pedido</th>
@@ -79,11 +83,13 @@
                             <th>Total Itens</th>
                             <th>Entregue?</th>
                             <th>Cancelado?</th>
+                            <th>Pago?</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr ng-repeat="x in listaPedidos">
                             <td><a href="/pedidos/pedido-edit/{{x._id}}"><span class="fa fa-lg fa-pencil-square-o" aria-hidden="true"></span></a></td>
+                            <td>{{x.codigo}}</td>
                             <td>{{ x.cliente.nome }}</td>
                             <td>{{ x.metodopagamento}}</td>
                             <td>{{ x.datapedido | date:'dd/MM/yyyy HH:mm'}}</td>
@@ -92,6 +98,7 @@
                             <td>{{x.listaprodutos.length}}</td>
                             <td>{{x.entregue == true ? 'Sim' : 'Não'}}</td>
                             <td>{{x.cancelado == true ? 'Sim' : 'Não'}}</td>
+                            <td>{{x.pago == true ? 'Sim' : 'Não'}}</td>
                         </tr>
                     </tbody>
                 </table>

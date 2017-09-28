@@ -13,7 +13,7 @@ const schema = new Schema({
     metodopagamento: {
         type: String,
         require: true,
-        enum: ['Dinheiro', 'Sodexo', 'VR', 'Débito', 'Crédito', 'Fiado'],
+        enum: ['Dinheiro', 'Sodexo', 'VR', 'Débito', 'Crédito', 'Conta'],
     },
     datapedido: {
         type: Date,
@@ -49,6 +49,15 @@ const schema = new Schema({
         type: Boolean,
         required: true,
         default: false,
+    },
+    pago: {
+        type: Boolean,
+        required: true,
+        default: false,
+    },
+    codigo: {
+        type: String,
+        index: true,
     },
 });
 

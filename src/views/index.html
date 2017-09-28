@@ -33,6 +33,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/pedidos">Pedidos</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contas">Contas</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -64,7 +67,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="x in ListaPedidosPendentes track by $index ">
-                            <td><b>{{$index +1}}</b></td>
+                            <td><b>{{x.codigo}}</b></td>
                             <td>{{ x.cliente.nome }}</td>
                             <td>{{x.cliente.telprincipal}}</td>
                             <td>{{ x.valortotal | currency:"&#82;&#36;"}}</td>

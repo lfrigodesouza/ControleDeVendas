@@ -64,7 +64,7 @@ const schema = new Schema({
         required: false,
         trim: true,
     },
-    fiado: {
+    conta: {
         type: Boolean,
         required: false,
         default: false,

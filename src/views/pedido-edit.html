@@ -3,13 +3,15 @@
 
 <head>
     <!-- <script src="../../node_modules/angular/angular.js"></script> -->
+    <script src="/scripts/jquery-3.2.1.min.js"></script>
     <script src="/scripts/angular.min.js"></script>
     <script src="/scripts/main-script.js"></script>
     <script src="/scripts/pedido-edit-script.js"></script>
+    <script src="/scripts/tether.min.js"></script>
+    <script src="/scripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/styles/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/main.css">
     <link rel="stylesheet" href="/styles/font-awesome.min.css">
-
+    <link rel="stylesheet" href="/styles/main.css">
     <title>{{pageTitle}}</title>
 </head>
 
@@ -30,6 +32,9 @@
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="/pedidos">Pedidos<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contas">Contas</a>
                 </li>
             </ul>
         </div>
@@ -84,7 +89,7 @@
                     <b>Empresa:</b> {{cliente.empresa}}
                 </div>
                 <div class="col-md-2">
-                    <b>Aceitar Fiado?</b> {{true == cliente.fiado ? 'Sim' : 'Não' }}
+                    <b>Aceitar Conta?</b> {{true == cliente.conta ? 'Sim' : 'Não' }}
                 </div>
                 <div class="col-md-3">
                     <b>Email:</b> {{cliente.email}}
@@ -115,12 +120,16 @@
                             <option value="VR">VR</option>
                             <option value="Débito">Débito</option>
                             <option value="Crédito">Crédito</option>
-                            <option value="Fiado" ng-if="cliente.fiado == true">Fiado<option>
+                            <option value="Conta" ng-if="cliente.conta == true">Conta<option>
                         </select>
             </div>
             <div class="col-md-2">
                 <label for="txtValorTotal">Valor Total</label>
                 <span class="form-control">{{valorTotal | currency:"&#82;&#36;"}}</span>
+            </div>
+            <div class="col-md-2" ng-hide="Codigo == ''">
+                <label for="txtNrPedido"># Pedido</label>
+                <span class="form-control" ng-disabled="true">{{Codigo}}</span>
             </div>
         </div>
         <div class="row">
@@ -136,7 +145,7 @@
         <div class="row">
             <div class="col-md-8">
                 <label for="txtObservacao">Obseração</label>
-                <textarea id="txtObservacao" ng-disabled="bloquearSalvar" data-ng-model="data.observacao" class="form-control"></textarea>
+                <textarea id="txtObservacao" ng-disabled="bloquearSalvar" data-ng-model="observacao" class="form-control"></textarea>
             </div>
         </div>
     </div>
@@ -223,6 +232,49 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal da pesquisa de produtos -->
+        <div class="modal fade" id="ModalProdutos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Buscar Produto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                    </div>
+                    <div class="modal-body">
+                        busca de produtos
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                        <button type="button" class="btn btn-primary" ng-click="clickOKEntregar()">Sim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal da pesquisa de clientes -->
+        <div class="modal fade" id="ModalClientes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Buscar Cliente</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                    </div>
+                    <div class="modal-body">
+                        Busca de Clientes
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                        <button type="button" class="btn btn-primary" ng-click="clickOKEntregar()">Sim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </body>
 
 </html>

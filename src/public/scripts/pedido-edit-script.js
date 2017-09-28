@@ -1,13 +1,5 @@
 'use strict';
 
-/*
-TODO: 
-    4. Implementar sequenciamento dos pedidos
-        4.1 Implementar busca pelo numero do pedido
-        4.2 Incluir numero do pedido somente leitura ao editar pedido
-        4.3 Retornar numero do pedido depois de salvar
-*/
-
 angular.module('app').controller('Pedido', function($scope, $http, $filter) {
     $scope.pageTitle = 'Cadastro de Pedido';
     $scope.data = {};
@@ -17,6 +9,7 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
     $scope.idPedido = window.location.pathname
         .substr(window.location.pathname.lastIndexOf('/') + 1);
     $scope.bloquearSalvar = false;
+    $scope.Codigo = '';
 
 
     $scope.buscaPedidoById = function(id, callback) {
@@ -34,6 +27,7 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
                 $scope.ListaDeProdutos = response.data.listaprodutos;
                 $scope.entregue = response.data.entregue;
                 $scope.cancelado = response.data.cancelado;
+                $scope.Codigo = response.data.codigo;
                 if (callback != null) {
                     callback();
                 }
@@ -42,32 +36,52 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
 
     $scope.clickSalvar = function() {
         debugger;
+        $scope.preparaEnvio();
         if (!$scope.isUpdate) {
-            $scope.preparaEnvio();
             $http.post('/pedidos/', JSON.stringify($scope.pedido), {
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8',
                 },
             }).then((response) => {
-                $scope.data = {};
-                $scope.pedido = {};
-                $scope.ListaDeProdutos = [];
-                $scope.cliente = {};
-                $scope.valorTotal = 0;
-                $scope.dtPedido = new Date($filter('date')(Date.now()
-                    , 'yyyy-MM-ddTHH:mm:ss'));
-                $scope.dtEntrega = new Date($filter('date')(Date.now()
-                    , 'yyyy-MM-ddTHH:mm:ss'));
+                debugger;
+                limpaCampos();
                 $scope.alert = 'alert alert-success';
-                $scope.msgRetorno = 'Pedido salvo com sucesso';
+                $scope.msgRetorno = 'Pedido salvo com sucesso: '
+                    + response.data.Codigo;
             }, (response) => {
                 debugger;
                 $scope.alert = 'alert alert-danger';
                 $scope.msgRetorno = processaErros(response.data);
             });
         } else {
-            debugger;
+            $scope.pedido.cliente = $scope.pedido.cliente._id;
+            $http.put('/pedidos/', JSON.stringify($scope.pedido), {
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                },
+            }).then((response) => {
+                limpaCampos();
+                $scope.alert = 'alert alert-success';
+                $scope.msgRetorno = 'Pedido atualizado com sucesso';
+            }, (response) => {
+                debugger;
+                $scope.alert = 'alert alert-danger';
+                $scope.msgRetorno = processaErros(response.data);
+            });
         }
+    };
+
+    function limpaCampos() {
+        $scope.data = {};
+        $scope.pedido = {};
+        $scope.ListaDeProdutos = [];
+        $scope.observacao = '';
+        $scope.cliente = {};
+        $scope.valorTotal = 0;
+        $scope.dtPedido = new Date($filter('date')(Date.now()
+            , 'yyyy-MM-ddTHH:mm:ss'));
+        $scope.dtEntrega = new Date($filter('date')(Date.now()
+            , 'yyyy-MM-ddTHH:mm:ss'));
     };
 
     function processaErros(data) {
@@ -96,6 +110,9 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
     };
 
     $scope.buscaProdutoPorCodigo = function() {
+        debugger;
+        $('#ModalProdutos').modal('show');
+
         $http.get('/produtos/BuscaProdutoPorCodigo/' + $scope.data.buscaProduto)
             .then((response) => {
                 debugger;
@@ -114,7 +131,7 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
                 quantidade: $scope.quantidade,
                 produto: $scope.produto,
             });
-            $scope.valorTotal += $scope.produto.valor;
+            $scope.valorTotal += $scope.produto.valor * $scope.quantidade;
             $scope.produto = {};
             $scope.data.buscaProduto = '';
         }
@@ -135,6 +152,7 @@ angular.module('app').controller('Pedido', function($scope, $http, $filter) {
             valortotal: $scope.valorTotal,
             observacao: $scope.data.observacao,
             listaprodutos: $scope.ListaDeProdutos,
+            observacao: $scope.observacao,
         };
         debugger;
     };
